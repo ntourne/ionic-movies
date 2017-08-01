@@ -7,7 +7,7 @@
 <ion-content padding>
 
   <ion-card *ngFor="let movie of movies">
-    <img src="img/nin-live.png" />
+    <img src="http://image.tmdb.org/t/p/w185{{movie.backdrop_path}}" />
     <ion-card-content>
       <ion-card-title>
         {{movie.title}}
