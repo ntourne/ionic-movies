@@ -1,9 +1,34 @@
 <ion-header>
   <ion-navbar>
-    <ion-title>Movies</ion-title>
+    <ion-title>Descripcion</ion-title>
   </ion-navbar>
 </ion-header>
+col-6
+<ion-content>
+  <ion-card>
+    <img src="http://image.tmdb.org/t/p/w185{{movie.backdrop_path}}" />
+    <ion-card-content>
+      <ion-card-title>
+        {{movie.title}}
+      </ion-card-title>
+      <p>
+       {{movie.overview}}
+       <br>
+       Release Date : {{movie.release_date}}
+       <br>
+       Review critic : {{movie.vote_average}}/10
+       <br>
+       !Review critics are based in {{movie.vote_count}} votes!
+      </p>
+    </ion-card-content>
+  </ion-card>
 
-<ion-content padding>
+  <button ion-button full color="{{colorBottom}}" round (click)="onAddFavorite(movie)">
+    <ion-icon name="heart"></ion-icon>
+  </button>
+  <p class="movie-favorite">
+    {{FavMsg}}
+  </p>
+
 
 </ion-content>

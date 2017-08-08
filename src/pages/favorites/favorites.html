@@ -7,5 +7,15 @@
 </ion-header>
 
 <ion-content padding>
-
+  <ion-card *ngFor="let movie of favMovies">
+    <img src="http://image.tmdb.org/t/p/w185{{movie.backdrop_path}}" />
+    <ion-card-content>
+      <ion-card-title>
+        {{movie.title}}
+      </ion-card-title>
+      <p>
+       {{movie.overview}}
+      </p>
+    </ion-card-content>
+  </ion-card>
 </ion-content>
