@@ -1,34 +1,46 @@
 <ion-header>
   <ion-navbar>
-    <ion-title>Descripcion</ion-title>
+    <ion-title>Movie Details: {{movie.title}} </ion-title>
   </ion-navbar>
 </ion-header>
-col-6
 <ion-content>
   <ion-card>
     <img src="http://image.tmdb.org/t/p/w185{{movie.backdrop_path}}" />
     <ion-card-content>
       <ion-card-title>
-        {{movie.title}}
+        {{movie.title}} {{movie.isInFavorite}}
       </ion-card-title>
       <p>
-       {{movie.overview}}
-       <br>
-       Release Date : {{movie.release_date}}
-       <br>
-       Review critic : {{movie.vote_average}}/10
-       <br>
-       !Review critics are based in {{movie.vote_count}} votes!
+        {{movie.overview}}
+        <br> Release Date : {{movie.release_date}}
+        <br> Review critic : {{movie.vote_average}}/10
+        <br> !Review critics are based in {{movie.vote_count}} votes!
       </p>
     </ion-card-content>
   </ion-card>
 
-  <button ion-button full color="{{colorBottom}}" round (click)="onAddFavorite(movie)">
+  <button ion-button full [color]="(movie.isInFavorite) ? 'danger' : 'light'" round (click)="onAddOrRemoveFavorite()">
     <ion-icon name="heart"></ion-icon>
   </button>
+  <!-- button ion-button full color="{{colorBottom}}" round (click)="onDeleteFavorite()">
+    <ion-icon name="heart"></ion-icon>
+  </button -->
+
   <p class="movie-favorite">
     {{FavMsg}}
   </p>
 
+  <ion-list>
+    <ion-item *ngFor="let comment of comments">
+      <h2>{{comment.name}}</h2>
+      <h3>{{comment.text}}</h3>
+    </ion-item>
+  </ion-list>
 
+  <ion-list>
+    <ion-item>
+      <ion-label floating>Comment Here!!</ion-label>
+      <ion-input type="text" value="prueba"></ion-input>
+    </ion-item>
+  </ion-list>
 </ion-content>

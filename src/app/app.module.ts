@@ -24,7 +24,11 @@ import { MovieService } from "../providers/movie.service";
   imports: [
     BrowserModule,
     HttpModule,
-    IonicModule.forRoot(MyApp)
+    IonicModule.forRoot(MyApp,{
+
+      tabsHideOnSubPages: true,
+
+    })
   ],
   bootstrap: [IonicApp],
   entryComponents: [

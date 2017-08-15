@@ -15,12 +15,12 @@ export class MovieService {
     constructor(public http: Http) { }
 
 
-    discover() { 
+    discover() {
         let BASE_URL = "https://api.themoviedb.org/3/discover/movie?api_key=%API_KEY%";
         let baseUrl = BASE_URL.replace("%API_KEY%", this.API_KEY);
         return this.http.get(baseUrl)
             .map(response => response.json())
-            .map(response => response.results); 
+            .map(response => response.results);
     }
 
 
@@ -47,6 +47,34 @@ export class MovieService {
         if (!exists)
             this.favoriteMovies.push(movie);
     }
+
+
+    isMovieInFavorites(movie: any) {
+        var exists = false;
+
+        // Check if movie exists
+        this.favoriteMovies.forEach((m: any) => {
+            if (m.id == movie.id)
+                exists = true;
+        })
+
+        return exists;
+    }
+
+
+    deleteFavoriteMovie(movie: any) {
+
+        var exists = false;
+
+        // Check if movie exists
+        this.favoriteMovies.forEach((m: any) => {
+            if (m.id == movie.id)
+                this.favoriteMovies.splice(movie);
+
+        })
+
+    }
+
 
 
     getFavoriteMovies() {
