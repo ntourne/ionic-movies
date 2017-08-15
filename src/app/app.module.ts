@@ -12,6 +12,7 @@ import { TabsPage } from '../pages/tabs/tabs';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { MovieService } from "../providers/movie.service";
+import { CommentService } from "../providers/comment.service";
 
 @NgModule({
   declarations: [
@@ -42,6 +43,7 @@ import { MovieService } from "../providers/movie.service";
     StatusBar,
     SplashScreen,
     MovieService,
+    CommentService,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })
