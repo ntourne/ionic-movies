@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Http } from '@angular/http';
+import { Http, RequestOptions, RequestOptionsArgs } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/observable/of';
@@ -7,7 +7,7 @@ import 'rxjs/add/observable/of';
 
 @Injectable()
 export class CommentService {
-    
+
 
     baseUrl = "http://59936934d297ba0011da1ab4.mockapi.io";
 
@@ -19,10 +19,8 @@ export class CommentService {
      * @param movieId 
      */
     getCommentsByMovie(movieId: string) {
-        
         return this.http.get(this.baseUrl + '/comments')
-            .map(response => response.json())
-            .map(response => response.results);
+            .map(response => response.json().filter((comment: any) => comment.movieId == movieId));
     }
 
 
@@ -32,13 +30,22 @@ export class CommentService {
      * @param text 
      */
     postComment(movieId: string, text: string) {
-        let data = {
-            movieId: movieId,
-            text: text
-        }
-        return this.http.post(this.baseUrl + '/comments', data)
-            .map(response => response.json())
-            .map(response => response.results);
+
+        var headers = new Headers();
+        headers.append("Accept", 'application/json');
+        headers.append('Content-Type', 'application/json' );
+
+        this.http.post(this.baseUrl + '/comments',
+            {
+                movieId: movieId,
+                text: text
+            })
+            .map(res => res.json())
+            .subscribe(data => {
+            console.log(data); 
+            });
+
+        // return this.http.post(this.baseUrl + '/comments', data);
     }
 
 
