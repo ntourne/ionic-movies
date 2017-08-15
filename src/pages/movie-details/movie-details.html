@@ -22,25 +22,28 @@
   <button ion-button full [color]="(movie.isInFavorite) ? 'danger' : 'light'" round (click)="onAddOrRemoveFavorite()">
     <ion-icon name="heart"></ion-icon>
   </button>
-  <!-- button ion-button full color="{{colorBottom}}" round (click)="onDeleteFavorite()">
-    <ion-icon name="heart"></ion-icon>
-  </button -->
 
   <p class="movie-favorite">
     {{FavMsg}}
   </p>
 
   <ion-list>
-    <ion-item *ngFor="let comment of comments">
-      <h2>{{comment.name}}</h2>
-      <h3>{{comment.text}}</h3>
+    <ion-item *ngFor="let c of comments">
+      <h2>{{c.text}}</h2>
     </ion-item>
   </ion-list>
 
-  <ion-list>
-    <ion-item>
-      <ion-label floating>Comment Here!!</ion-label>
-      <ion-input type="text" value="prueba"></ion-input>
-    </ion-item>
-  </ion-list>
 </ion-content>
+
+<ion-footer>
+  <ion-toolbar position="bottom">
+    <ion-input type="text" [(ngModel)]="comment" placeholder="Type a Comment"></ion-input>
+
+    <ion-buttons end>
+      <button ion-button icon-only *ngIf="comment" (click)="addComment()">
+        <ion-icon name="send"></ion-icon>
+      </button>
+
+    </ion-buttons>
+  </ion-toolbar>
+</ion-footer>

@@ -10,23 +10,32 @@ import { MovieDetailsPage } from "../movie-details/movie-details";
 export class MoviesPage {
 
 	movies: any[] = null;
-    search: any[] = [];
+	search: any[] = [];
+	loading: boolean = false;
+
 	constructor(public navCtrl: NavController, public movieService: MovieService) {
 
 	}
-	
-	onOpenMovie(movie){
-		this.navCtrl.push(MovieDetailsPage,{
-			movie:movie
+
+	onOpenMovie(movie) {
+		this.navCtrl.push(MovieDetailsPage, {
+			movie: movie
 		});
 	}
 
 	ionViewDidLoad() {
-		this.movieService.discover().subscribe((data: any) => {
-			this.movies = data;
-			console.log(this.movies);
-		})
+
+		this.loading = true;
+		setTimeout(() => {
+			this.movieService.discover().subscribe((data: any) => {
+				this.movies = data;
+				this.loading = false;
+				console.log(this.movies);
+			})
+		}, 2000);
+
 	}
+
 
 	onSearch(query: string) {
 		console.log(query);
