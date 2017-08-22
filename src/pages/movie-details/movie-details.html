@@ -4,18 +4,20 @@
   </ion-navbar>
 </ion-header>
 <ion-content>
+  <ion-card-title>
+    {{movie.title}}
+  </ion-card-title>
   <ion-card>
     <img src="http://image.tmdb.org/t/p/w185{{movie.backdrop_path}}" />
     <ion-card-content>
-      <ion-card-title>
-        {{movie.title}} {{movie.isInFavorite}}
-      </ion-card-title>
-      <p>
+        <ion-card>
         {{movie.overview}}
+        <ion-card-content>
+        </ion-card-content>
+        </ion-card>
         <br> Release Date : {{movie.release_date}}
         <br> Review critic : {{movie.vote_average}}/10
         <br> !Review critics are based in {{movie.vote_count}} votes!
-      </p>
     </ion-card-content>
   </ion-card>
 
@@ -23,9 +25,13 @@
     <ion-icon name="heart"></ion-icon>
   </button>
 
+
   <p class="movie-favorite">
     {{FavMsg}}
   </p>
+  <button ion-button full (click)="onShareTwitter()">
+    <ion-icon name="logo-twitter"></ion-icon>
+  </button>
 
   <ion-list>
     <ion-item *ngFor="let c of comments">

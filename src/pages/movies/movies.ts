@@ -3,6 +3,8 @@ import { NavController } from 'ionic-angular';
 import { MovieService } from "../../providers/movie.service";
 import { ModalController, Platform, NavParams, ViewController } from 'ionic-angular';
 import { MovieDetailsPage } from "../movie-details/movie-details";
+import { ModalAbout } from "../about/about";
+
 @Component({
 	selector: 'page-movies',
 	templateUrl: 'movies.html'
@@ -13,7 +15,7 @@ export class MoviesPage {
 	search: any[] = [];
 	loading: boolean = false;
 
-	constructor(public navCtrl: NavController, public movieService: MovieService) {
+	constructor(public navCtrl: NavController, public movieService: MovieService, public modalCtrl: ModalController) {
 
 	}
 
@@ -44,6 +46,9 @@ export class MoviesPage {
 			console.log(this.search);
 		})
 	}
-
+	onAbout() {
+		let aboutModal = this.modalCtrl.create(ModalAbout);
+		aboutModal.present();
+	}
 }
 

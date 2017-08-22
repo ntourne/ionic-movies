@@ -2,6 +2,7 @@ import { NgModule, ErrorHandler } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpModule } from '@angular/http';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
+import { SocialSharing } from '@ionic-native/social-sharing';
 import { MyApp } from './app.component';
 
 import { FavoritesPage } from '../pages/favorites/favorites';
@@ -13,6 +14,7 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { MovieService } from "../providers/movie.service";
 import { CommentService } from "../providers/comment.service";
+import { ModalAbout } from "../pages/about/about";
 
 @NgModule({
   declarations: [
@@ -20,7 +22,8 @@ import { CommentService } from "../providers/comment.service";
     FavoritesPage,
     MoviesPage,
     MovieDetailsPage,
-    TabsPage
+    TabsPage,
+    ModalAbout
   ],
   imports: [
     BrowserModule,
@@ -37,13 +40,15 @@ import { CommentService } from "../providers/comment.service";
     FavoritesPage,
     MoviesPage,
     MovieDetailsPage,
-    TabsPage
+    TabsPage,
+    ModalAbout
   ],
   providers: [
     StatusBar,
     SplashScreen,
     MovieService,
     CommentService,
+    SocialSharing,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })
